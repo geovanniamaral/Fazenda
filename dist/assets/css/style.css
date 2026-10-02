@@ -263,6 +263,7 @@ button, input, textarea, select {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 20px;
 }
 
 .logo {
@@ -311,15 +312,17 @@ button, input, textarea, select {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: 16px;
+  flex-wrap: nowrap;
 }
 
 .nav-link {
   color: rgba(255, 255, 255, 0.9);
-  font-size: 0.9rem;
+  font-size: 0.82rem;
   font-weight: 500;
   position: relative;
   padding: 6px 0;
+  white-space: nowrap;
 }
 
 .nav-link::after {
@@ -509,6 +512,16 @@ button, input, textarea, select {
 /* Sections Base */
 .section {
   padding: 90px 0;
+  scroll-margin-top: 88px;
+}
+
+.section:not(.events-section) .section-tag {
+  color: #76511f;
+}
+
+.section:not(.events-section) .section-tag::before,
+.section:not(.events-section) .section-tag::after {
+  background-color: #76511f;
 }
 
 .section-alt {
@@ -717,9 +730,39 @@ button, input, textarea, select {
   box-shadow: var(--shadow-lg);
 }
 
+.section-photo-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.section-photo-strip img {
+  width: 100%;
+  height: 96px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  cursor: zoom-in;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-smooth);
+}
+
+.section-photo-strip img:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.section-photo-strip-light {
+  margin: 26px 0 0;
+}
+
+.section-photo-strip-light img {
+  border: 1px solid rgba(255, 255, 255, 0.22);
+}
+
 .floating-badge {
   position: absolute;
-  bottom: -20px;
+  bottom: 126px;
   left: -20px;
   background: var(--color-primary);
   color: #ffffff;
@@ -892,6 +935,7 @@ button, input, textarea, select {
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
   transition: var(--transition-smooth);
+  cursor: zoom-in;
 }
 
 .baias-img-grid img:hover {

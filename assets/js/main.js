@@ -6,7 +6,88 @@
 document.addEventListener('DOMContentLoaded', () => {
   // Contatos e reservas: preencha somente quando o número oficial existir.
   const WHATSAPP_NUMBER = '';
-  const AIRBNB_URL = 'https://www.airbnb.com.br/rooms/1753655522855520461?unique_share_id=14c888a3-2520-431e-a065-56ece72af80e&viralityEntryPoint=1&s=76';
+  const AIRBNB_URL = 'https://www.airbnb.com.br/rooms/1753655522855520461';
+  const photoCatalog = window.FAZENDA_PHOTOS || {};
+
+  const photoLabel = (path) => {
+    const rawFilename = path.split('/').pop();
+    let filename = rawFilename;
+    try {
+      filename = decodeURIComponent(rawFilename);
+    } catch (_) {
+      // Mantém o nome original quando ele contém um caractere % isolado.
+    }
+    filename = filename.replace(/\.[^.]+$/, '');
+    return filename
+      .replace(/[-_]+/g, ' ')
+      .replace(/\b\w/g, letter => letter.toUpperCase());
+  };
+
+  const escapeHtml = (value) => String(value).replace(/[&<>'"]/g, character => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+  })[character]);
+
+  const featuredFirst = (photos) => {
+    const featuredIndex = photos.findIndex(path => /fachada|principal|capa|vista/i.test(path));
+    if (featuredIndex <= 0) return photos;
+    return [photos[featuredIndex], ...photos.slice(0, featuredIndex), ...photos.slice(featuredIndex + 1)];
+  };
+
+  const photosFor = (category) => featuredFirst([...(photoCatalog[category] || [])]);
+
+  // As galerias são montadas a partir das pastas catalogadas na publicação.
+  const heroPhoto = photosFor('hero')[0];
+  const hero = document.querySelector('.hero');
+  if (hero && heroPhoto) {
+    hero.style.backgroundImage = `linear-gradient(180deg, rgba(15, 31, 20, 0.7) 0%, rgba(28, 51, 34, 0.88) 100%), url('${heroPhoto}')`;
+  }
+
+  const mainChaleImg = document.getElementById('chale-main-image');
+  const chalePhotos = photosFor('chales');
+  const chaleThumbs = document.querySelector('[data-photo-gallery="chales"]');
+  if (mainChaleImg && chalePhotos.length) {
+    mainChaleImg.src = chalePhotos[0];
+    mainChaleImg.alt = `${photoLabel(chalePhotos[0])} — chalé da Fazenda Rio Acima`;
+  }
+  if (chaleThumbs && chalePhotos.length) {
+    chaleThumbs.innerHTML = chalePhotos.map((path, index) =>
+      `<img src="${escapeHtml(path)}" alt="${escapeHtml(photoLabel(path))} — chalé" class="chale-thumb${index === 0 ? ' active' : ''}" loading="lazy" decoding="async" />`
+    ).join('');
+  }
+
+  document.querySelectorAll('[data-photo-featured]').forEach(image => {
+    const photos = photosFor(image.dataset.photoFeatured);
+    if (photos.length) {
+      image.src = photos[0];
+      image.alt = `${photoLabel(photos[0])} — Fazenda Rio Acima`;
+    }
+  });
+
+  document.querySelectorAll('[data-photo-gallery]').forEach(container => {
+    const category = container.dataset.photoGallery;
+    if (category === 'chales') return;
+
+    const photos = category === 'todas'
+      ? [...new Set(['hero', 'chales', 'espaco-gastronomico', 'eventos', 'baias', 'paisagens'].flatMap(photosFor))]
+      : photosFor(category);
+    if (!photos.length) return;
+
+    if (category === 'todas') {
+      container.innerHTML = photos.map(path => `
+        <div class="gallery-item">
+          <img src="${escapeHtml(path)}" alt="${escapeHtml(photoLabel(path))} — Fazenda Rio Acima" loading="lazy" decoding="async" />
+          <div class="gallery-overlay"><span>${escapeHtml(photoLabel(path))}</span></div>
+        </div>`).join('');
+    } else if (category === 'baias') {
+      container.innerHTML = photos.map(path =>
+        `<img src="${escapeHtml(path)}" alt="${escapeHtml(photoLabel(path))} — estrutura para cavalos" loading="lazy" decoding="async" />`
+      ).join('');
+    } else {
+      container.innerHTML = photos.map(path =>
+        `<img src="${escapeHtml(path)}" alt="${escapeHtml(photoLabel(path))} — Fazenda Rio Acima" loading="lazy" decoding="async" />`
+      ).join('');
+    }
+  });
 
   // 1. Header com sombra e blur ao rolar a página
   const header = document.querySelector('.header');
@@ -40,7 +121,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // 3. Galeria de Fotos do Chalé (Troca de Thumbnails)
-  const mainChaleImg = document.getElementById('chale-main-image');
   const thumbs = document.querySelectorAll('.chale-thumb');
 
   thumbs.forEach(thumb => {
@@ -58,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const modal = document.getElementById('photo-modal');
   const modalImg = document.getElementById('modal-image');
   const modalClose = document.querySelector('.modal-close');
-  const galleryItems = document.querySelectorAll('.gallery-item img, .chale-main-img, .restaurant-img-main');
+  const galleryItems = document.querySelectorAll('.gallery-item img, .chale-main-img, .restaurant-img-main, .section-photo-strip img, .baias-img-grid img');
 
   galleryItems.forEach(img => {
     img.addEventListener('click', () => {
@@ -81,28 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 5. Botão Flutuante de WhatsApp (Popover)
-  const waTrigger = document.querySelector('.whatsapp-trigger-btn');
-  const waPopover = document.querySelector('.whatsapp-popover');
-
-  if (waTrigger && waPopover) {
-    if (!WHATSAPP_NUMBER) {
-      document.querySelector('.floating-whatsapp')?.classList.add('is-hidden');
-    }
-
-    waTrigger.addEventListener('click', (e) => {
-      e.stopPropagation();
-      waPopover.classList.toggle('show');
-    });
-
-    document.addEventListener('click', (e) => {
-      if (!waPopover.contains(e.target) && !waTrigger.contains(e.target)) {
-        waPopover.classList.remove('show');
-      }
-    });
-  }
-
-  // 6. Formulário / Simulador de Casamentos & Eventos
+  // 5. Formulário / Simulador de Casamentos & Eventos
   const eventForm = document.getElementById('event-simulator-form');
   if (eventForm) {
     const eventTypeControl = document.getElementById('event-type');
@@ -154,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 7. Disparos Dinâmicos de WhatsApp para outros botões
+  // 6. Integração pronta para ser ativada quando houver número oficial.
   window.sendWhatsApp = function(topic) {
     if (!WHATSAPP_NUMBER) {
       window.alert('O atendimento pelo WhatsApp será ativado assim que o número oficial estiver disponível.');

@@ -4,6 +4,8 @@ As imagens que aparecem no site ficam somente dentro de:
 
 `assets/images/site/`
 
+Não edite `dist/assets/images/site/` diretamente. A pasta `dist` é uma cópia otimizada para publicação e é recriada do zero pelo script. As fotos originais permanecem preservadas em `assets/images/site/`.
+
 As fotos originais continuam preservadas em `assets/images/`, mas o site não usa diretamente esse arquivo geral. Isso evita que uma foto de paisagem apareça, por engano, como foto de baia ou de evento.
 
 ## Pastas por assunto
@@ -17,19 +19,25 @@ As fotos originais continuam preservadas em `assets/images/`, mas o site não us
 | `site/baias/` | Baias, cocheiras, corredores, piquetes e instalações equinas |
 | `site/paisagens/` | Sede, montanhas, natureza e pôr do sol |
 
-## Forma mais fácil de trocar uma foto
+## Forma mais fácil de trocar ou acrescentar fotos
 
 1. Abra a pasta do assunto correto.
-2. Veja qual arquivo representa a posição que deseja alterar.
-3. Renomeie a nova foto exatamente com o mesmo nome.
-4. Substitua o arquivo existente.
-5. Publique novamente o site.
+2. Para trocar uma foto, substitua o arquivo mantendo o mesmo nome.
+3. Para acrescentar uma foto, copie o novo arquivo para a pasta. Use um nome sem espaços e sem acentos.
+4. Execute `powershell -ExecutionPolicy Bypass -File .\PREPARAR_PUBLICACAO.ps1`.
+5. Publique novamente a pasta `dist`.
+
+Para visualizar antes de publicar, dê dois cliques em `VISUALIZAR_SITE.bat`. O catálogo será atualizado, o site abrirá no navegador e nada será enviado para a internet.
+
+Para centralizar todas as tarefas, use `MANUTENCAO_SITE.bat`. O menu abre a pasta correta de cada seção, permite visualizar, publicar ou acessar a sincronização com o GitHub.
 
 Exemplo: para trocar a imagem principal das baias, substitua:
 
 `assets/images/site/baias/estrutura-baias.jpg`
 
-Não é necessário editar o HTML quando o nome do arquivo é mantido.
+Não é necessário editar o HTML. O script atualiza `assets/js/photo-catalog.js`, e cada foto aparece automaticamente na seção correspondente e na galeria geral.
+
+Uma foto nova pode ter qualquer nome sem espaços ou acentos. Para definir facilmente a imagem principal dos chalés ou do espaço gastronômico, comece o nome com `00-capa`, por exemplo `00-capa-chale.webp`.
 
 ## Arquivos usados em cada seção
 
@@ -85,4 +93,4 @@ As fotos atuais mostram os espaços disponíveis. Quando houver registros de eve
 - Não coloque fotos genéricas em `eventos/` ou `baias/`. A imagem deve mostrar claramente o espaço anunciado.
 - Antes de publicar fotos de hóspedes ou participantes de eventos, confirme que existe autorização de uso de imagem.
 
-Se uma nova foto precisar ocupar uma posição adicional, e não apenas substituir uma existente, o `index.html` deverá ser atualizado.
+Arquivos novos são incluídos automaticamente. O site aceita JPG, JPEG, PNG, WebP e AVIF; outros arquivos colocados nas pastas são ignorados.

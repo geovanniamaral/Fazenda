@@ -1,0 +1,25 @@
+COMO ADICIONAR OU TROCAR FOTOS
+
+Coloque cada imagem nesta pasta permanente, na categoria correspondente:
+
+- hero: imagem panoramica do topo (use apenas uma)
+- chales: hospedagem, quartos, cozinha, varanda e vista
+- espaco-gastronomico: salao, cozinha e estrutura para eventos privados
+- eventos: cerimonias, festas, confraternizacoes e ensaios
+- baias: cocheiras, corredores, piquetes e silos
+- paisagens: natureza, lago, sede, montanhas e por do sol
+
+Depois execute PREPARAR_PUBLICACAO.ps1 na raiz do projeto. O catalogo e a
+pasta dist serao atualizados automaticamente. Nao e preciso editar o HTML.
+
+IMPORTANTE: dist e apenas a copia pronta para publicacao e e recriada do zero.
+Nunca coloque fotos em dist. O local correto e permanente e assets/images/site/.
+As fotos originais sao preservadas aqui; copias leves sao geradas em dist.
+
+Formatos aceitos: JPG, JPEG, PNG, WebP e AVIF.
+Prefira WebP, fotos horizontais com ate 1600 px e menos de 500 KB.
+Use nomes sem espacos e sem acentos, por exemplo: salao-interno-01.webp.
+
+Para escolher a imagem principal dos chales ou do espaco gastronomico, use
+um nome iniciado por 00-capa, por exemplo: 00-capa-chale.webp. Nao e preciso
+renomear as demais fotos.

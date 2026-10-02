@@ -37,20 +37,19 @@
       </a>
 
       <nav class="nav-links">
-        <a href="#inicio" class="nav-link">Início</a>
-        <a href="#chales" class="nav-link">Chalés (Airbnb)</a>
-        <a href="#espaco-gourmet" class="nav-link">Espaço Gastronômico</a>
-        <a href="#eventos" class="nav-link">Casamentos & Eventos</a>
-        <a href="#baias" class="nav-link">Aluguel de Baias</a>
-        <a href="#galeria" class="nav-link">Galeria</a>
-        <a href="#localizacao" class="nav-link">Como Chegar</a>
+        <a href="#chales" class="nav-link">Chalés</a>
+        <a href="#espaco-gourmet" class="nav-link">Gastronomia</a>
+        <a href="#eventos" class="nav-link">Eventos</a>
+        <a href="#baias" class="nav-link">Baias</a>
+        <a href="#galeria" class="nav-link">Fotos</a>
+        <a href="#localizacao" class="nav-link">Localização</a>
       </nav>
 
       <div class="nav-actions">
-        <a href="https://www.airbnb.com.br/rooms/1753655522855520461?unique_share_id=14c888a3-2520-431e-a065-56ece72af80e&viralityEntryPoint=1&s=76" target="_blank" rel="noopener noreferrer" class="btn btn-airbnb">
+        <a href="https://www.airbnb.com.br/rooms/1753655522855520461" target="_blank" rel="noopener noreferrer" class="btn btn-airbnb">
           <i class="fa-brands fa-airbnb"></i> Ver no Airbnb
         </a>
-        <button type="button" onclick="sendWhatsApp('geral')" class="btn btn-primary whatsapp-contact-btn">
+        <button type="button" class="btn btn-primary whatsapp-contact-btn" disabled aria-disabled="true" title="O número oficial ainda não está disponível">
           <i class="fa-brands fa-whatsapp"></i> WhatsApp em breve
         </button>
       </div>
@@ -167,7 +166,7 @@
           </div>
           <img id="chale-main-image" src="assets/images/site/chales/fachada.jpg" alt="Fachada da Casa Chalé na Fazenda Rio Acima" class="chale-main-img" decoding="async" />
           
-          <div class="chale-thumbs">
+          <div class="chale-thumbs" data-photo-gallery="chales">
             <img src="assets/images/site/chales/fachada.jpg" alt="Fachada Chalé" class="chale-thumb active" loading="lazy" decoding="async" />
             <img src="assets/images/site/chales/varanda.jpg" alt="Varanda e Rede" class="chale-thumb" loading="lazy" decoding="async" />
             <img src="assets/images/site/chales/sala.jpg" alt="Sala e Ambiente Interno" class="chale-thumb" loading="lazy" decoding="async" />
@@ -215,11 +214,11 @@
           </div>
 
           <div class="chale-actions">
-            <a href="https://www.airbnb.com.br/rooms/1753655522855520461?unique_share_id=14c888a3-2520-431e-a065-56ece72af80e&viralityEntryPoint=1&s=76" target="_blank" rel="noopener noreferrer" class="btn btn-airbnb">
+            <a href="https://www.airbnb.com.br/rooms/1753655522855520461" target="_blank" rel="noopener noreferrer" class="btn btn-airbnb">
               <i class="fa-brands fa-airbnb"></i> Reservar pelo Airbnb
             </a>
-            <button onclick="sendWhatsApp('chale')" class="btn btn-outline">
-              <i class="fa-brands fa-whatsapp"></i> Consultar Disponibilidade
+            <button class="btn btn-outline" disabled aria-disabled="true">
+              <i class="fa-brands fa-whatsapp"></i> WhatsApp em breve
             </button>
           </div>
         </div>
@@ -239,7 +238,7 @@
           <div class="highlight-box">
             <p>
               <i class="fa-solid fa-circle-info" style="color: var(--color-accent); margin-right: 6px;"></i>
-              <strong>Atenção:</strong> Nosso restaurante é um <u>espaço completo para locação de eventos privados</u>. Você pode trazer seu próprio buffet, chef convidado ou fazer sua confraternização de família com infraestrutura gastronômica pronta!
+              <strong>Importante:</strong> Este não é um restaurante aberto ao público. É um <u>espaço para locação de eventos privados</u>, com estrutura de apoio para buffet, chef convidado ou confraternizações.
             </p>
           </div>
 
@@ -273,13 +272,14 @@
             </div>
           </div>
 
-          <button onclick="sendWhatsApp('restaurante')" class="btn btn-dark">
-            <i class="fa-brands fa-whatsapp"></i> Solicitar Orçamento do Espaço
+          <button class="btn btn-dark" disabled aria-disabled="true">
+            <i class="fa-brands fa-whatsapp"></i> Orçamentos em breve
           </button>
         </div>
 
         <div class="restaurant-visuals">
-          <img src="assets/images/site/espaco-gastronomico/fachada-salao.jpg" alt="Área externa do espaço gastronômico da Fazenda Rio Acima" class="restaurant-img-main" loading="lazy" decoding="async" />
+          <img src="assets/images/site/espaco-gastronomico/fachada-salao.jpg" alt="Área externa do espaço gastronômico da Fazenda Rio Acima" class="restaurant-img-main" data-photo-featured="espaco-gastronomico" loading="lazy" decoding="async" />
+          <div class="section-photo-strip" data-photo-gallery="espaco-gastronomico" aria-label="Fotos do espaço gastronômico"></div>
           <div class="floating-badge">
             <h5>Infraestrutura Pronta</h5>
             <p>Espaço versátil para você criar a celebração do seu jeito.</p>
@@ -340,6 +340,8 @@
           </div>
         </div>
       </div>
+
+      <div class="section-photo-strip section-photo-strip-light" data-photo-gallery="eventos" aria-label="Mais fotos dos espaços para eventos"></div>
 
       <!-- Simulador de Orçamento Direto para WhatsApp -->
       <div class="event-calculator-box">
@@ -443,12 +445,12 @@
             </div>
           </div>
 
-          <button onclick="sendWhatsApp('baias')" class="btn btn-dark">
-            <i class="fa-brands fa-whatsapp"></i> Consultar Vagas de Baias
+          <button class="btn btn-dark" disabled aria-disabled="true">
+            <i class="fa-brands fa-whatsapp"></i> WhatsApp em breve
           </button>
         </div>
 
-        <div class="baias-img-grid">
+        <div class="baias-img-grid" data-photo-gallery="baias">
           <img src="assets/images/site/baias/estrutura-baias.jpg" alt="Instalações externas e piquetes próximos às baias" loading="lazy" decoding="async" />
           <img src="assets/images/site/baias/fachada-baias.jpg" alt="Fachada da estrutura destinada às baias" loading="lazy" decoding="async" />
           <img src="assets/images/site/baias/corredor-baias.jpg" alt="Corredor externo da estrutura de baias" loading="lazy" decoding="async" />
@@ -469,7 +471,7 @@
         </p>
       </div>
 
-      <div class="gallery-grid">
+      <div class="gallery-grid" data-photo-gallery="todas">
         <div class="gallery-item">
           <img src="assets/images/site/hero/fazenda-vista.jpg" alt="Vista panorâmica da Fazenda Rio Acima" loading="lazy" decoding="async" />
           <div class="gallery-overlay"><span>Vista Geral & Silos</span></div>
@@ -586,7 +588,7 @@
             </div>
           </div>
 
-          <a href="https://maps.google.com/?q=Estrada+Municipal+Oswaldo+Chiquetto+Rizzo+2401+Pedreira+SP" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%;">
+          <a href="https://maps.app.goo.gl/PD5oxRqCUtLdktgr5" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%;">
             <i class="fa-solid fa-diamond-turn-right"></i> Abrir Rota no Google Maps
           </a>
         </div>
@@ -600,38 +602,6 @@
       <button class="modal-close" aria-label="Fechar Foto">&times;</button>
       <img id="modal-image" src="" alt="Foto Ampliada da Fazenda Rio Acima" />
     </div>
-  </div>
-
-  <!-- Botão Flutuante de WhatsApp com Menu Rápido -->
-  <div class="floating-whatsapp">
-    <div class="whatsapp-popover">
-      <div class="popover-header">
-        <h4><i class="fa-brands fa-whatsapp"></i> Fazenda Rio Acima</h4>
-        <p>Como podemos te ajudar hoje?</p>
-      </div>
-      <div class="popover-body">
-        <a href="javascript:void(0)" onclick="sendWhatsApp('chale')" class="wa-option-btn">
-          <i class="fa-solid fa-house-chimney" style="color: var(--color-accent-dark);"></i>
-          <span>Aluguel do Chalé (Airbnb)</span>
-        </a>
-        <a href="javascript:void(0)" onclick="sendWhatsApp('casamento')" class="wa-option-btn">
-          <i class="fa-solid fa-champagne-glasses" style="color: var(--color-accent-dark);"></i>
-          <span>Casamentos & Eventos</span>
-        </a>
-        <a href="javascript:void(0)" onclick="sendWhatsApp('restaurante')" class="wa-option-btn">
-          <i class="fa-solid fa-utensils" style="color: var(--color-accent-dark);"></i>
-          <span>Locação do Espaço Gourmet</span>
-        </a>
-        <a href="javascript:void(0)" onclick="sendWhatsApp('baias')" class="wa-option-btn">
-          <i class="fa-solid fa-horse" style="color: var(--color-accent-dark);"></i>
-          <span>Aluguel de Baias / Cavalos</span>
-        </a>
-      </div>
-    </div>
-
-    <button class="whatsapp-trigger-btn" aria-label="Atendimento WhatsApp">
-      <i class="fa-brands fa-whatsapp"></i>
-    </button>
   </div>
 
   <!-- Rodapé -->
@@ -665,7 +635,7 @@
         <div class="footer-col">
           <h4 class="footer-title">Links Úteis</h4>
           <ul class="footer-links">
-            <li><a href="https://www.airbnb.com.br/rooms/1753655522855520461?unique_share_id=14c888a3-2520-431e-a065-56ece72af80e&viralityEntryPoint=1&s=76" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-airbnb" style="color: #FF385C;"></i> Anúncio no Airbnb</a></li>
+            <li><a href="https://www.airbnb.com.br/rooms/1753655522855520461" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-airbnb" style="color: #FF385C;"></i> Anúncio no Airbnb</a></li>
             <li><a href="https://maps.google.com/?q=Estrada+Municipal+Oswaldo+Chiquetto+Rizzo+2401+Pedreira+SP" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-location-dot" style="color: var(--color-accent);"></i> Traçar Rota no Maps</a></li>
             <li><a href="#localizacao">Entre Montes - Pedreira</a></li>
           </ul>
@@ -684,7 +654,7 @@
             </li>
             <li>
               <i class="fa-brands fa-whatsapp"></i>
-              <span>Atendimento Direto pelo WhatsApp</span>
+              <span>WhatsApp em breve</span>
             </li>
           </ul>
         </div>
@@ -697,6 +667,7 @@
   </footer>
 
   <!-- Scripts -->
+  <script src="assets/js/photo-catalog.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>
