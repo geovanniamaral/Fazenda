@@ -4,8 +4,8 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Contatos e reservas: preencha somente quando o número oficial existir.
-  const WHATSAPP_NUMBER = '';
+  // Número oficial com código do país e DDD, sem espaços ou pontuação.
+  const WHATSAPP_NUMBER = '5511971697824';
   const AIRBNB_URL = 'https://www.airbnb.com.br/rooms/1753655522855520461';
   const photoCatalog = window.FAZENDA_PHOTOS || {};
 
@@ -174,10 +174,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       submitButton.classList.toggle('btn-airbnb', isAirbnb);
       submitButton.classList.toggle('btn-whatsapp', !isAirbnb);
-      submitButton.disabled = !isAirbnb && !WHATSAPP_NUMBER;
       submitButton.innerHTML = isAirbnb
         ? '<i class="fa-brands fa-airbnb"></i> Ver disponibilidade no Airbnb'
-        : '<i class="fa-brands fa-whatsapp"></i> WhatsApp em breve';
+        : '<i class="fa-brands fa-whatsapp"></i> Solicitar orçamento pelo WhatsApp';
     };
 
     eventTypeControl.addEventListener('change', updateEventForm);
@@ -213,7 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 6. Integração pronta para ser ativada quando houver número oficial.
+  // 6. Integração com o WhatsApp oficial.
   window.sendWhatsApp = function(topic) {
     if (!WHATSAPP_NUMBER) {
       window.alert('O atendimento pelo WhatsApp será ativado assim que o número oficial estiver disponível.');

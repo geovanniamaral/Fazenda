@@ -49,8 +49,8 @@
         <a href="https://www.airbnb.com.br/rooms/1753655522855520461" target="_blank" rel="noopener noreferrer" class="btn btn-airbnb">
           <i class="fa-brands fa-airbnb"></i> Ver no Airbnb
         </a>
-        <button type="button" class="btn btn-primary whatsapp-contact-btn" disabled aria-disabled="true" title="O número oficial ainda não está disponível">
-          <i class="fa-brands fa-whatsapp"></i> WhatsApp em breve
+        <button type="button" class="btn btn-primary whatsapp-contact-btn" onclick="sendWhatsApp()">
+          <i class="fa-brands fa-whatsapp"></i> Fale pelo WhatsApp
         </button>
       </div>
 
@@ -217,8 +217,8 @@
             <a href="https://www.airbnb.com.br/rooms/1753655522855520461" target="_blank" rel="noopener noreferrer" class="btn btn-airbnb">
               <i class="fa-brands fa-airbnb"></i> Reservar pelo Airbnb
             </a>
-            <button class="btn btn-outline" disabled aria-disabled="true">
-              <i class="fa-brands fa-whatsapp"></i> WhatsApp em breve
+            <button type="button" class="btn btn-outline" onclick="sendWhatsApp('chale')">
+              <i class="fa-brands fa-whatsapp"></i> Consultar pelo WhatsApp
             </button>
           </div>
         </div>
@@ -272,8 +272,8 @@
             </div>
           </div>
 
-          <button class="btn btn-dark" disabled aria-disabled="true">
-            <i class="fa-brands fa-whatsapp"></i> Orçamentos em breve
+          <button type="button" class="btn btn-dark" onclick="sendWhatsApp('restaurante')">
+            <i class="fa-brands fa-whatsapp"></i> Solicitar orçamento
           </button>
         </div>
 
@@ -393,7 +393,7 @@
             <button id="event-submit-button" type="submit" class="btn btn-airbnb" style="padding: 16px 36px; font-size: 1.05rem;">
               <i class="fa-brands fa-airbnb"></i> Ver disponibilidade no Airbnb
             </button>
-            <p id="event-contact-status" class="event-contact-status">Para outros tipos de evento, o WhatsApp será ativado quando o número estiver disponível.</p>
+            <p id="event-contact-status" class="event-contact-status">Para outros tipos de evento, solicite um orçamento diretamente pelo WhatsApp.</p>
           </div>
         </form>
       </div>
@@ -445,8 +445,8 @@
             </div>
           </div>
 
-          <button class="btn btn-dark" disabled aria-disabled="true">
-            <i class="fa-brands fa-whatsapp"></i> WhatsApp em breve
+          <button type="button" class="btn btn-dark" onclick="sendWhatsApp('baias')">
+            <i class="fa-brands fa-whatsapp"></i> Consultar pelo WhatsApp
           </button>
         </div>
 
@@ -650,11 +650,15 @@
             </li>
             <li>
               <i class="fa-solid fa-envelope"></i>
-              <span>contato@fazendarioacima.com.br</span>
+              <a href="mailto:fazendarioacimapedreira@gmail.com">fazendarioacimapedreira@gmail.com</a>
             </li>
             <li>
               <i class="fa-brands fa-whatsapp"></i>
-              <span>WhatsApp em breve</span>
+              <a href="https://wa.me/5511971697824" target="_blank" rel="noopener noreferrer">(11) 97169-7824</a>
+            </li>
+            <li>
+              <i class="fa-brands fa-instagram"></i>
+              <a href="https://www.instagram.com/fazendarioacimapedreira/" target="_blank" rel="noopener noreferrer" aria-label="Instagram da Fazenda Rio Acima">@fazendarioacimapedreira</a>
             </li>
           </ul>
         </div>

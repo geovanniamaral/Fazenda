@@ -1286,6 +1286,15 @@ button, input, textarea, select {
   margin-top: 3px;
 }
 
+.footer-contact a {
+  color: inherit;
+  overflow-wrap: anywhere;
+}
+
+.footer-contact a:hover {
+  color: var(--color-accent);
+}
+
 .footer-bottom {
   text-align: center;
   padding-top: 24px;
